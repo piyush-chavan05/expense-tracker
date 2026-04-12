@@ -12,3 +12,11 @@ def create_expense(amount, category, description):
         'category': categories[category],
         'description': description}
     
+def format_expense(expense):
+    return print(f"₹{expense['amount']}/- | {expense['category']} | {expense['description']}")
+
+def format_expenses_list(expenses):
+    formatted_listt = []
+    for expense in expenses:
+        formatted_listt.append(format_expense(expense))
+    return formatted_listt

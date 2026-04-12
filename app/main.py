@@ -1,5 +1,5 @@
 
-from expense import create_expense
+from expense import create_expense, format_expense, format_expenses_list
 from storage import save_expenses, load_expenses
 
 def add_expense():
@@ -25,17 +25,31 @@ def add_expense():
         return
 
     description = input('Enter a description for the expense: ')
+    description=description.capitalize()
 
     expense=create_expense(amount, category, description)
     data=load_expenses()
     data.append(expense)
     save_expenses(data)
     print(save_expenses(data))
+    formatted = format_expense(expense)
+
+def view_expenses():
+    print('''\n\n''')
+    print('Your Expenses:')
+    expenses = load_expenses()
+    if not expenses:
+        print('No expenses found. Please add an expense first.')
+        return
+    formatted_list = format_expenses_list(expenses)
+
+    return formatted_list
+    
 
 
     
 while True:
-    print('''Select an operation:
+    print('''\n\nSelect an operation:
         1. Add Expense
         2. View Expenses
         3. Delete Expense
@@ -46,7 +60,8 @@ while True:
 
     if choice=='1':
         add_expense()
-        
+    elif choice=='2':
+        view_expenses()
     elif choice=='5':
         print('Exiting the program. Goodbye!')
         break
