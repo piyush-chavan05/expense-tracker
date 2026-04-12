@@ -1,6 +1,6 @@
 
 from expense import create_expense
-from storage import save_expense, show_expense
+from storage import save_expenses, load_expenses
 
 def add_expense():
     amount = float(input('Enter the amount of the expense: '))
@@ -22,13 +22,16 @@ def add_expense():
     }
     if category not in categories:
         print('Invalid category. Please select a valid option.')
+        return
 
     description = input('Enter a description for the expense: ')
 
     expense=create_expense(amount, category, description)
-    data=show_expense()
+    data=load_expenses()
     data.append(expense)
-    save_expense(data)
+    save_expenses(data)
+    print(save_expenses(data))
+
 
     
 while True:

@@ -1,14 +1,13 @@
 import json
 
-def save_expense(data):
+def save_expenses(data):
     with open("data.json", "w") as file:
         json.dump(data, file, indent=4)
     return "Expense saved successfully!"
 
-def show_expense():
+def load_expenses():
     try:
         with open("data.json", "r") as file:
-            data = json.load(file)
-            return data
-    except FileNotFoundError:
-        return "No expenses found. Please add an expense first."
+            return json.load(file)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return []
