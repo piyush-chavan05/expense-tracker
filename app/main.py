@@ -3,7 +3,11 @@ from expense import create_expense, format_expense, format_expenses_list
 from storage import save_expenses, load_expenses
 
 def add_expense():
-    amount = float(input('Enter the amount of the expense: '))
+    try:
+        amount = float(input('Enter the amount of the expense: '))
+    except ValueError:
+        print('\nInvalid amount. Please enter a valid number.')
+        return
     category = input('''Select the category of the expense 
                       1. Food
                       2. Travel
@@ -21,7 +25,7 @@ def add_expense():
         '6': 'Other'
     }
     if category not in categories:
-        print('Invalid category. Please select a valid option.')
+        print('\nInvalid category. Please select a valid option.')
         return
 
     description = input('Enter a description for the expense: ')
@@ -39,7 +43,7 @@ def view_expenses():
     print('Your Expenses:')
     expenses = load_expenses()
     if not expenses:
-        print('No expenses found. Please add an expense first.')
+        print('\nNo expenses found. Please add an expense first.')
         return
     formatted_list = format_expenses_list(expenses)
 
@@ -66,5 +70,5 @@ while True:
         print('Exiting the program. Goodbye!')
         break
     else:
-        print('Invalid choice. Please select a valid option.')
+        print('\nInvalid choice. Please select a valid option.')
         
