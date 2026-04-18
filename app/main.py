@@ -66,6 +66,10 @@ while True:
         add_expense()
     elif choice=='2':
         view_expenses()
+    elif choice=='3':
+        print("\nFeature to be added soon!")
+    elif choice=='4':
+        print("\nFeature to be added soon!")
     elif choice=='5':
         print('Exiting the program. Goodbye!')
         break
