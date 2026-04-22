@@ -48,6 +48,13 @@ def view_expenses():
     formatted_list = format_expenses_list(expenses)
 
     return formatted_list
+
+def delete_expense():
+    index=int(input("Enter Index of the expense to be deleted: "))
+    expenses=load_expenses()
+    expenses.pop(index-1)
+    save_expenses(expenses)
+    print("Expense deleted successfully!")
     
 
 
@@ -67,7 +74,7 @@ while True:
     elif choice=='2':
         view_expenses()
     elif choice=='3':
-        print("\nFeature to be added soon!")
+        delete_expense()
     elif choice=='4':
         print("\nFeature to be added soon!")
     elif choice=='5':
