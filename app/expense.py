@@ -1,6 +1,6 @@
 from storage import load_expenses
 
-def create_expense(amount, category, description, id=None):
+def create_expense(amount, category, description):
     categories = {
         '1': 'Food',
         '2': 'Travel',
@@ -9,16 +9,16 @@ def create_expense(amount, category, description, id=None):
         '5': 'Personal',
         '6': 'Other'
     }
-    id = len(load_expenses()) + 1
     return{
-        'id': id,
         'amount': amount,
         'category': categories[category],
         'description': description}
+
+
     
-def format_expense(expense):
+def format_expense(expense, index):
     return print(f'''
-    Index: {expense.get('id', 'N/A')} 
+    Index: {index} 
           ₹{expense.get('amount', 0)}/-      |      {expense.get('category', 'Unknown')}
     ---------------------------------------  
     Description:
@@ -28,6 +28,6 @@ def format_expense(expense):
 
 def format_expenses_list(expenses):
     formatted_listt = []
-    for expense in expenses:
-        formatted_listt.append(format_expense(expense))
+    for i, expense in enumerate(expenses, start=1):
+        formatted_listt.append(format_expense(expense, i))
     return formatted_listt

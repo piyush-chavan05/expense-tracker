@@ -35,13 +35,14 @@ def add_expense():
     data=load_expenses()
     data.append(expense)
     save_expenses(data)
-    print(save_expenses(data))
-    formatted = format_expense(expense)
+    print('\nExpense added successfully!')
+    format_expense(expense, len(data))
 
 def view_expenses():
     print('''\n\n''')
     print('Your Expenses:')
     expenses = load_expenses()
+
     if not expenses:
         print('\nNo expenses found. Please add an expense first.')
         return
@@ -55,7 +56,6 @@ def delete_expense():
     expenses.pop(index-1)
     save_expenses(expenses)
     print("Expense deleted successfully!")
-    
 
 
     
